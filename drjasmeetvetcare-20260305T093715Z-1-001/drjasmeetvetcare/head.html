@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | Dr. Jasmeet VetCare €“ Multispeciality Veterinary Hospital</title>
+    <meta name="description"
+        content="Explore all 11 veterinary services at Dr. Jasmeet VetCare €” surgery, vaccination, ICU, dentistry, dermatology, ophthalmology, oncology, and more in Chhattisgarh & Odisha." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>¾</text></svg>" />
+    <style>
+        /* ---- Services Photo Showcase ---- */
+        .svc-photo-strip {
+            background: var(--navy-mid);
+            padding: 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 40s linear infinite;
+        }
+
+        .marquee-wrapper:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-img {
+            width: 280px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0;
+            flex-shrink: 0;
+            border-right: 3px solid var(--navy);
+            filter: brightness(0.88) saturate(1.1);
+            transition: filter 0.3s;
+        }
+
+        .marquee-img:hover {
+            filter: brightness(1) saturate(1.25);
+        }
+
+        /* Image showcase grid */
+        .svc-img-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .svc-img-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .svc-img-item.tall {
+            aspect-ratio: 3/4;
+        }
+
+        .svc-img-item.wide {
+            grid-column: span 2;
+            aspect-ratio: 16/7;
+        }
+
+        .svc-img-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease, filter 0.3s;
+            filter: brightness(0.92) saturate(1.05);
+        }
+
+        .svc-img-item:hover img {
+            transform: scale(1.06);
+            filter: brightness(1) saturate(1.2);
+        }
+
+        .svc-img-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(to top, rgba(10, 22, 40, 0.92) 0%, transparent 100%);
+            color: var(--white);
+            font-family: 'Outfit';
+            font-size: 0.82rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .svc-img-item:hover .svc-img-label {
+            opacity: 1;
+        }
+
+        @media (max-width: 900px) {
+            .svc-img-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .svc-img-item.wide {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .svc-img-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .svc-img-item.wide {
+                grid-column: span 1;
+            }
+
+            .marquee-img {
+                width: 200px;
+                height: 130px;
+            }
+        }
+
+        /* Alternating Service Row Design (Matching Live Site) */
+        .service-alt-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .service-alt-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .service-alt-img {
+            flex: 1;
+        }
+
+        .service-alt-img img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 4px solid var(--white);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        .service-alt-text {
+            flex: 1;
+        }
+
+        .service-alt-text h3 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .service-alt-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--teal);
+        }
+
+        .service-alt-text p {
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 900px) {
+
+            .service-alt-row,
+            .service-alt-row.reverse {
+                flex-direction: column;
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+
+            .service-alt-text h3 {
+                font-size: 1.35rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="nav-brand" href="index.html">
+                <img src="images/logo.png" style="height:48px; width:auto; margin-right: 0.5rem;" class="nav-logo" alt="Dr. Jasmeet VetCare Logo" />
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">Dr. Jasmeet VetCare</span>
+                    <span class="nav-brand-sub">Chhattisgarh & Odisha</span>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-dropdown">
+                    <a class="nav-link" href="#">About </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="about.html">About </a>
+                        <a href="doctor.html">Dr. Jasmeet Singh</a>
+                    </div>
+                </li>
+                <li><a class="nav-link active" href="services.html">Services</a></li>
+                <li><a class="nav-link" href="team.html">Our Team</a></li>
+                <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li><a class="nav-link" href="contact.html">Contact</a></li>
+                <li><a class="nav-link nav-cta" href="contact.html">Book Appointment</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / <span>Services</span></div>
+            <span class="section-label">What We Offer</span>
+            <div class="accent-line"></div>
+            <h1>Our Veterinary Services</h1>
+            <p class="section-desc" style="margin-top:1rem;">"We Love Pets As Much As You Do" €” Our professional
+                veterinarians offer a full range of surgical and medical facilities for small animals and more.</p>
+        </div>
+    </section>
+
+    <!-- CLINIC PHOTO MARQUEE STRIP -->
+    <div class="svc-photo-strip">
+        <div class="marquee-wrapper">
+            <!-- Duplicated for seamless loop -->
+            <img class="marquee-img" src="services-img/multi-specialty-veterinary-hospital-in-bhilai.webp"
+                alt="Clinic Bhilai" />
+            <img class="marquee-img" src="services-img/veterinary-hospitals-in-odisha.webp" alt="Vet Hospital Odisha" />
+            <img class="marquee-img" src="services-img/animal-clinics-in-odisha.webp" alt="Animal Clinic" />
+            <img class="marquee-img" src="services-img/pet-clinic-in-odisha.webp" alt="Pet Clinic" />
+            <img class="marquee-img" src="services-img/dog-hospital-in-odisha.webp" alt="Dog Care" />
+            <img class="marquee-img" src="services-img/animal-hospitals-in-bhilai.webp" alt="Animal Hospital Bhilai" />
+            <img class="marquee-img" src="services-img/super-speciality-veterinary-hospital-in-odisha.webp"
+                alt="Super Speciality" />
+            <img class="marquee-img" src="services-img/veterinary-doctor-in-odisha.webp" alt="Vet Doctor" />
+            <!-- Duplicate for seamless loop -->
+            <img class="marquee-img" src="services-img/multi-specialty-veterinary-hospital-in-bhilai.webp"
+                alt="Clinic Bhilai" />
+            <img class="marquee-img" src="services-img/veterinary-hospitals-in-odisha.webp" alt="Vet Hospital Odisha" />
+            <img class="marquee-img" src="services-img/animal-clinics-in-odisha.webp" alt="Animal Clinic" />
+            <img class="marquee-img" src="services-img/pet-clinic-in-odisha.webp" alt="Pet Clinic" />
+            <img class="marquee-img" src="services-img/dog-hospital-in-odisha.webp" alt="Dog Care" />
+            <img class="marquee-img" src="services-img/animal-hospitals-in-bhilai.webp" alt="Animal Hospital Bhilai" />
+            <img class="marquee-img" src="services-img/super-speciality-veterinary-hospital-in-odisha.webp"
+                alt="Super Speciality" />
+            <img class="marquee-img" src="services-img/veterinary-doctor-in-odisha.webp" alt="Vet Doctor" />
+
+

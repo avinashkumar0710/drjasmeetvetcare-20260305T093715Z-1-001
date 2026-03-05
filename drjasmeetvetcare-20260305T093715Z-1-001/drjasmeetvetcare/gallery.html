@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Dr. Jasmeet VetCare &ndash; Veterinary Hospital Photos</title>
+    <meta name="description"
+        content="Browse the gallery of Dr. Jasmeet VetCare — see our clinic, surgeries, grooming, vaccinations, dental care, and team at work across Chhattisgarh & Odisha." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+    <style>
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.55rem 1.4rem;
+            border-radius: 50px;
+            border: 1.5px solid rgba(0, 184, 169, 0.3);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            border-color: transparent;
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(0, 184, 169, 0.35);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            background: var(--navy-mid);
+            border: 1px solid var(--glass-border);
+            transition: opacity 0.25s ease;
+        }
+
+        .gallery-item.tall {
+            aspect-ratio: 3/4;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+            aspect-ratio: 16/7;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.07);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 22, 40, 0.9) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .gallery-overlay span {
+            font-size: 0.78rem;
+            color: var(--teal);
+            font-family: 'Outfit';
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        /* SVG zoom icon — top-right corner */
+        .gallery-zoom-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition);
+            color: white;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-zoom-icon {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(5, 12, 25, 0.96);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 88vw;
+            max-height: 85vh;
+            border-radius: var(--radius);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+            object-fit: contain;
+        }
+
+        .lightbox-close,
+        .lightbox-nav {
+            position: absolute;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition);
+            border-radius: 50%;
+        }
+
+        .lightbox-close {
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-nav:hover {
+            background: rgba(0, 184, 169, 0.35);
+        }
+
+        .lightbox-nav {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+        }
+
+        .lightbox-prev {
+            left: 1.5rem;
+        }
+
+        .lightbox-next {
+            right: 1.5rem;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .lightbox-caption h4 {
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .lightbox-caption span {
+            color: var(--teal);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item.wide {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="nav-brand" href="index.html">
+                <img src="images/logo.png" style="height:48px; width:auto; margin-right: 0.5rem;" class="nav-logo"
+                    alt="Dr. Jasmeet VetCare Logo" />
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">Dr. Jasmeet VetCare</span>
+                    <span class="nav-brand-sub">Chhattisgarh &amp; Odisha</span>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-dropdown">
+                    <a class="nav-link" href="#">About</a>
+                    <div class="nav-dropdown-menu">
+                        <a href="about.html">About</a>
+                        <a href="doctor.html">Dr. Jasmeet Singh</a>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="services.html">Services</a></li>
+                <li><a class="nav-link" href="team.html">Our Team</a></li>
+                <li><a class="nav-link active" href="gallery.html">Gallery</a></li>
+                <li><a class="nav-link" href="contact.html">Contact</a></li>
+                <li><a class="nav-link nav-cta" href="contact.html">Book Appointment</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / <span>Gallery</span></div>
+            <span class="section-label">Inside VetCare</span>
+            <div class="accent-line"></div>
+            <h1>Our Clinic Gallery</h1>
+            <p class="section-desc" style="margin-top:1rem;">A glimpse inside Dr. Jasmeet VetCare &mdash; our
+                facilities, procedures, and the beloved pets we care for every day.</p>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section-pad bg-dark">
+        <div class="container">
+
+            <!-- Filter buttons -->
+            <div class="gallery-filters fade-up">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="surgery">Surgery</button>
+                <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+                <button class="filter-btn" data-filter="consultation">Pets &amp; Consult</button>
+                <button class="filter-btn" data-filter="clinic">Clinic</button>
+            </div>
+
+            <!-- Reusable SVG snippets as inline templates -->
+            <!-- zoom icon SVG used in each card -->
+            <template id="tpl-zoom">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                    <path d="M11 8v6M8 11h6" />
+                </svg>
+            </template>
+
+            <!-- Gallery grid -->
+            <div class="gallery-grid fade-up delay-1" id="galleryGrid">
+
+                <!-- 1: CT Scan Wide — clinic -->
+                <div class="gallery-item wide" data-category="clinic" data-title="CT Scan &mdash; Advanced Diagnostics"
+                    data-sub="Siemens CT Unit" data-src="gallery/animal-care-in-chhattisgarh-odisha.png">
+                    <img src="gallery/animal-care-in-chhattisgarh-odisha.png" alt="CT Scan Diagnostics"
+                        loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>CT Scan &mdash; Advanced Diagnostics</h4><span>Siemens CT Unit</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 2 — clinic -->
+                <div class="gallery-item" data-category="clinic" data-title="Animal Care" data-sub="Chhattisgarh Clinic"
+                    data-src="gallery/animal-care-in-chhattisgarh.png">
+                    <img src="gallery/animal-care-in-chhattisgarh.png" alt="Animal Care Chhattisgarh" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Animal Care</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 3 — clinic -->
+                <div class="gallery-item" data-category="clinic" data-title="Animal Care" data-sub="Odisha Branch"
+                    data-src="gallery/animal-care-in-odisha-chhattisgarh.png">
+                    <img src="gallery/animal-care-in-odisha-chhattisgarh.png" alt="Animal Care Odisha" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Animal Care</h4><span>Odisha Branch</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 4 — clinic -->
+                <div class="gallery-item" data-category="clinic" data-title="Animal Hospital" data-sub="Chhattisgarh"
+                    data-src="gallery/animal-hospitals-in-chhattisgarh.png">
+                    <img src="gallery/animal-hospitals-in-chhattisgarh.png" alt="Animal Hospital" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Animal Hospital</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 5: Wildlife Wide -->
+                <div class="gallery-item wide" data-category="wildlife"
+                    data-title="Wildlife Care &mdash; Elephant Treatment" data-sub="Wild Animal Medicine"
+                    data-src="gallery/dog-hospital-in-chhattisgarh-odisha.png">
+                    <img src="gallery/dog-hospital-in-chhattisgarh-odisha.png" alt="Elephant Treatment"
+                        loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Wildlife Care &mdash; Elephant</h4><span>Wild Animal Medicine</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 6 — surgery -->
+                <div class="gallery-item" data-category="surgery" data-title="Surgical Procedure"
+                    data-sub="Small Animal Surgery" data-src="gallery/dog-hospital-in-chhattisgarh.png">
+                    <img src="gallery/dog-hospital-in-chhattisgarh.png" alt="Surgery" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Surgical Procedure</h4><span>Small Animal Surgery</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 7 — clinic -->
+                <div class="gallery-item" data-category="clinic" data-title="Parrot Care" data-sub="Odisha Branch"
+                    data-src="gallery/dog-hospital-in-odisha-chhattisgarh.png">
+                    <img src="gallery/dog-hospital-in-odisha-chhattisgarh.png" alt="Parrot Care" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Parrot Care</h4><span>Odisha Branch</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 8 — surgery -->
+                <div class="gallery-item" data-category="surgery" data-title="Post-Surgery Recovery"
+                    data-sub="Mother Dog &amp; Puppies"
+                    data-src="gallery/multi-specialty-veterinary-hospital-in-chhattisgarh-odisha.png">
+                    <img src="gallery/multi-specialty-veterinary-hospital-in-chhattisgarh-odisha.png" alt="Post Surgery"
+                        loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Post-Surgery Recovery</h4><span>Mother Dog &amp; Pups</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 9: Wide — clinic -->
+                <div class="gallery-item wide" data-category="clinic" data-title="Multi-Specialty Veterinary Hospital"
+                    data-sub="Chhattisgarh" data-src="gallery/multi-specialty-veterinary-hospital-in-chhattisgarh.png">
+                    <img src="gallery/multi-specialty-veterinary-hospital-in-chhattisgarh.png" alt="Veterinary Hospital"
+                        loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Multi-Specialty Hospital</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 10 — clinic -->
+                <div class="gallery-item" data-category="clinic" data-title="Multi-Specialty Hospital" data-sub="Odisha"
+                    data-src="gallery/multi-specialty-veterinary-hospital-in-odisha-chhattisgarh.png">
+                    <img src="gallery/multi-specialty-veterinary-hospital-in-odisha-chhattisgarh.png"
+                        alt="Vet Hospital Odisha" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Multi-Specialty Hospital</h4><span>Odisha</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 11 — consultation -->
+                <div class="gallery-item" data-category="consultation" data-title="Pet Clinic"
+                    data-sub="Chhattisgarh &amp; Odisha" data-src="gallery/pet-clinic-in-chhattisgarh-odisha.png">
+                    <img src="gallery/pet-clinic-in-chhattisgarh-odisha.png" alt="Pet Clinic" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Pet Clinic</h4><span>Chhattisgarh &amp; Odisha</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 12 — consultation -->
+                <div class="gallery-item" data-category="consultation" data-title="Pet Clinic" data-sub="Chhattisgarh"
+                    data-src="gallery/pet-clinic-in-chhattisgarh.png">
+                    <img src="gallery/pet-clinic-in-chhattisgarh.png" alt="Pet Clinic CG" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Pet Clinic</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 13: Wide — consultation -->
+                <div class="gallery-item wide" data-category="consultation" data-title="Vet Clinic"
+                    data-sub="Chhattisgarh" data-src="gallery/vet-clinic-in-chhattisgarh.png">
+                    <img src="gallery/vet-clinic-in-chhattisgarh.png" alt="Vet Clinic" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Vet Clinic</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 14 — surgery -->
+                <div class="gallery-item" data-category="surgery" data-title="Veterinary Surgery"
+                    data-sub="Chhattisgarh &amp; Odisha"
+                    data-src="gallery/veterinary-doctor-in-chhattisgarh-odisha.png">
+                    <img src="gallery/veterinary-doctor-in-chhattisgarh-odisha.png" alt="Veterinary Surgery"
+                        loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Veterinary Surgery</h4><span>Chhattisgarh &amp; Odisha</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 15 — consultation -->
+                <div class="gallery-item" data-category="consultation" data-title="Veterinary Doctor"
+                    data-sub="Chhattisgarh" data-src="gallery/veterinary-doctor-in-chhattisgarh.png">
+                    <img src="gallery/veterinary-doctor-in-chhattisgarh.png" alt="Vet Doctor" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Veterinary Doctor</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 16 — wildlife -->
+                <div class="gallery-item" data-category="wildlife" data-title="Exotic Animal Care" data-sub="Raipur"
+                    data-src="gallery/veterinary-doctor-in-raipur.png">
+                    <img src="gallery/veterinary-doctor-in-raipur.png" alt="Exotic Animal Care" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Exotic Animal Care</h4><span>Raipur</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 17 — clinic -->
+                <div class="gallery-item" data-category="clinic" data-title="Veterinary Hospital"
+                    data-sub="Chhattisgarh &amp; Odisha"
+                    data-src="gallery/veterinary-hospitals-in-chhattisgarh-odisha.png">
+                    <img src="gallery/veterinary-hospitals-in-chhattisgarh-odisha.png" alt="Vet Hospital"
+                        loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Veterinary Hospital</h4><span>Chhattisgarh &amp; Odisha</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+                <!-- 18: Wide — clinic -->
+                <div class="gallery-item wide" data-category="clinic" data-title="Veterinary Hospital"
+                    data-sub="Chhattisgarh" data-src="gallery/veterinary-hospitals-in-chhattisgarh.png">
+                    <img src="gallery/veterinary-hospitals-in-chhattisgarh.png" alt="Vet Hospital CG" loading="lazy" />
+                    <div class="gallery-overlay">
+                        <h4>Veterinary Hospital</h4><span>Chhattisgarh</span>
+                    </div>
+                    <div class="gallery-zoom-icon"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <!-- Close -->
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+        </button>
+        <!-- Prev -->
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6" />
+            </svg>
+        </button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+        <!-- Next -->
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6" />
+            </svg>
+        </button>
+        <div class="lightbox-caption">
+            <h4 id="lightboxTitle"></h4>
+            <span id="lightboxSub"></span>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section style="padding:80px 0; background:linear-gradient(135deg, var(--teal-dark), var(--teal));">
+        <div class="container text-center fade-up">
+            <h2 style="color:var(--white); margin-bottom:0.75rem;">Visit Our Clinic Today</h2>
+            <p style="color:rgba(255,255,255,0.85); margin-bottom:2rem;">Experience world-class veterinary care at any
+                of our 3 branches.</p>
+            <a href="contact.html" class="btn btn-primary" style="background:var(--navy);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="margin-right:0.45rem; vertical-align:middle;">
+                    <rect width="18" height="18" x="3" y="4" rx="2" />
+                    <path d="M16 2v4M8 2v4M3 10h18" />
+                    <path d="M8 14h.01M12 14h.01M16 14h.01" />
+                </svg>
+                Book Appointment
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <script src="js/footer.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // ── Inject SVG zoom icon into every .gallery-zoom-icon ──
+        const zoomSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+            <path d="M11 8v6M8 11h6"/>
+        </svg>`;
+        document.querySelectorAll('.gallery-zoom-icon').forEach(el => el.innerHTML = zoomSVG);
+
+        // ── Filter: show/hide items by data-category ──
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const allItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                allItems.forEach(item => {
+                    const match = filter === 'all' || item.dataset.category === filter;
+                    if (match) {
+                        item.style.display = '';
+                        // restore wide class if it was removed
+                        requestAnimationFrame(() => item.style.opacity = '1');
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 220);
+                    }
+                });
+            });
+        });
+
+        // ── Lightbox ──
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightboxImg');
+        const lbTitle = document.getElementById('lightboxTitle');
+        const lbSub = document.getElementById('lightboxSub');
+
+        // Only items with a src participate in lightbox
+        const lbItems = () => [...document.querySelectorAll('.gallery-item[data-src]')]
+            .filter(i => i.style.display !== 'none');
+
+        let cur = 0;
+
+        function openLB(index) {
+            const items = lbItems();
+            cur = ((index % items.length) + items.length) % items.length;
+            const item = items[cur];
+            lbImg.src = item.dataset.src;
+            lbImg.alt = item.dataset.title || '';
+            lbTitle.innerHTML = item.dataset.title || '';
+            lbSub.innerHTML = item.dataset.sub || '';
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLB() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        allItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (!item.dataset.src) return;
+                const idx = lbItems().indexOf(item);
+                if (idx >= 0) openLB(idx);
+            });
+        });
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLB);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+        document.getElementById('lightboxPrev').addEventListener('click', () => openLB(cur - 1));
+        document.getElementById('lightboxNext').addEventListener('click', () => openLB(cur + 1));
+
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLB();
+            if (e.key === 'ArrowLeft') openLB(cur - 1);
+            if (e.key === 'ArrowRight') openLB(cur + 1);
+        });
+    </script>
+</body>
+
+</html>

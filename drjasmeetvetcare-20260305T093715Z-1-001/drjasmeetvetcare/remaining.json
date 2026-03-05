@@ -1,0 +1,422 @@
+[
+  {
+    "file": "about.html",
+    "string": "â�‚¬â€œ",
+    "hex": "c3a2efbfbde2809ac2acc3a2e282acc593"
+  },
+  {
+    "file": "about.html",
+    "string": "—",
+    "hex": "e28094"
+  },
+  {
+    "file": "about.html",
+    "string": "ÂÂ¾",
+    "hex": "c382c290c382c2be"
+  },
+  {
+    "file": "about.html",
+    "string": "ÂÂ¥",
+    "hex": "c382c28fc382c2a5"
+  },
+  {
+    "file": "about.html",
+    "string": "Å½â€œ",
+    "hex": "c385c2bdc3a2e282acc593"
+  },
+  {
+    "file": "about.html",
+    "string": "Ââ€”ï¸",
+    "hex": "c382c28fc3a2e282ace2809dc3afc2b8c28f"
+  },
+  {
+    "file": "about.html",
+    "string": "Å’Â",
+    "hex": "c385e28099c382c290"
+  },
+  {
+    "file": "about.html",
+    "string": "ÂÂ¢",
+    "hex": "c382c28fc382c2a2"
+  },
+  {
+    "file": "about.html",
+    "string": "â€œÂ",
+    "hex": "c3a2e282acc593c382c28d"
+  },
+  {
+    "file": "about.html",
+    "string": "â€œÅ¾",
+    "hex": "c3a2e282acc593c385c2be"
+  },
+  {
+    "file": "about.html",
+    "string": "Å’Å ",
+    "hex": "c385e28099c385c2a0"
+  },
+  {
+    "file": "contact.html",
+    "string": "â€“",
+    "hex": "c3a2e282ace2809c"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸ¾",
+    "hex": "c3b0c5b8c290c2be"
+  },
+  {
+    "file": "contact.html",
+    "string": "â–¾",
+    "hex": "c3a2e28093c2be"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸ¢",
+    "hex": "c3b0c5b8c28fc2a2"
+  },
+  {
+    "file": "contact.html",
+    "string": "â€”",
+    "hex": "c3a2e282ace2809d"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸ“ž",
+    "hex": "c3b0c5b8e2809cc5be"
+  },
+  {
+    "file": "contact.html",
+    "string": "âœ‰ï¸",
+    "hex": "c3a2c593e280b0c3afc2b8c28f"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸ¥",
+    "hex": "c3b0c5b8c28fc2a5"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸŒŠ",
+    "hex": "c3b0c5b8c592c5a0"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸ“¨",
+    "hex": "c3b0c5b8e2809cc2a8"
+  },
+  {
+    "file": "contact.html",
+    "string": "âœ…",
+    "hex": "c3a2c593e280a6"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸŒ…",
+    "hex": "c3b0c5b8c592e280a6"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸŒ‡",
+    "hex": "c3b0c5b8c592e280a1"
+  },
+  {
+    "file": "contact.html",
+    "string": "ðŸš¨",
+    "hex": "c3b0c5b8c5a1c2a8"
+  },
+  {
+    "file": "doctor.html",
+    "string": "â�‚¬â€œ",
+    "hex": "c3a2efbfbde2809ac2acc3a2e282acc593"
+  },
+  {
+    "file": "doctor.html",
+    "string": "—",
+    "hex": "e28094"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ¾",
+    "hex": "c3b0c5b8c290c2be"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€˜Â¨â�‚¬Ââš�€¢ï¸",
+    "hex": "c3b0c5b8efbfbde282accb9cc382c2a8c3a2efbfbde2809ac2acc382c28dc3a2c5a1efbfbde282acc2a2c3afc2b8c28f"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€œÅ¡",
+    "hex": "c3b0c5b8efbfbde282acc593c385c2a1"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€¦",
+    "hex": "c3b0c5b8c28fefbfbde282acc2a6"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€Â¬",
+    "hex": "c3b0c5b8efbfbde282acc29dc382c2ac"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€¢",
+    "hex": "c3b0c5b8c290efbfbde282acc2a2"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ¦�“",
+    "hex": "c3b0c5b8c2a6efbfbde2809c"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ",
+    "hex": "c3b0c5b8c290c28d"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€™â€°",
+    "hex": "c3b0c5b8efbfbde282ace284a2c3a2e282acc2b0"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€Â­",
+    "hex": "c3b0c5b8efbfbde282acc29dc382c2ad"
+  },
+  {
+    "file": "doctor.html",
+    "string": "ðŸ�€œâ€¦",
+    "hex": "c3b0c5b8efbfbde282acc593c3a2e282acc2a6"
+  },
+  {
+    "file": "gallery.html",
+    "string": "â�‚¬â€œ",
+    "hex": "c3a2efbfbde2809ac2acc3a2e282acc593"
+  },
+  {
+    "file": "gallery.html",
+    "string": "—",
+    "hex": "e28094"
+  },
+  {
+    "file": "gallery.html",
+    "string": "ðŸ¾",
+    "hex": "c3b0c5b8c290c2be"
+  },
+  {
+    "file": "gallery.html",
+    "string": "ðŸ�€Â",
+    "hex": "c3b0c5b8efbfbde282acc29dc382c28d"
+  },
+  {
+    "file": "gallery.html",
+    "string": "â�“â€¢",
+    "hex": "c3a2efbfbde2809cc3a2e282acc2a2"
+  },
+  {
+    "file": "gallery.html",
+    "string": "â�‚¬Â¹",
+    "hex": "c3a2efbfbde2809ac2acc382c2b9"
+  },
+  {
+    "file": "gallery.html",
+    "string": "â�‚¬Âº",
+    "hex": "c3a2efbfbde2809ac2acc382c2ba"
+  },
+  {
+    "file": "gallery.html",
+    "string": "ðŸ�€œâ€¦",
+    "hex": "c3b0c5b8efbfbde282acc593c3a2e282acc2a6"
+  },
+  {
+    "file": "head.html",
+    "string": "â€“",
+    "hex": "c3a2e282ace2809c"
+  },
+  {
+    "file": "head.html",
+    "string": "â€”",
+    "hex": "c3a2e282ace2809d"
+  },
+  {
+    "file": "head.html",
+    "string": "ðŸ¾",
+    "hex": "c3b0c5b8c290c2be"
+  },
+  {
+    "file": "head.html",
+    "string": "â–¾",
+    "hex": "c3a2e28093c2be"
+  },
+  {
+    "file": "index.html",
+    "string": "—",
+    "hex": "e28094"
+  },
+  {
+    "file": "index.html",
+    "string": "🐾",
+    "hex": "f09f90be"
+  },
+  {
+    "file": "index.html",
+    "string": "▾",
+    "hex": "e296be"
+  },
+  {
+    "file": "index.html",
+    "string": "📅",
+    "hex": "f09f9385"
+  },
+  {
+    "file": "index.html",
+    "string": "→",
+    "hex": "e28692"
+  },
+  {
+    "file": "index.html",
+    "string": "🔬",
+    "hex": "f09f94ac"
+  },
+  {
+    "file": "index.html",
+    "string": "✂️",
+    "hex": "e29c82efb88f"
+  },
+  {
+    "file": "index.html",
+    "string": "💊",
+    "hex": "f09f928a"
+  },
+  {
+    "file": "index.html",
+    "string": "🏥",
+    "hex": "f09f8fa5"
+  },
+  {
+    "file": "index.html",
+    "string": "💰",
+    "hex": "f09f92b0"
+  },
+  {
+    "file": "index.html",
+    "string": "⭐",
+    "hex": "e2ad90"
+  },
+  {
+    "file": "index.html",
+    "string": "💉",
+    "hex": "f09f9289"
+  },
+  {
+    "file": "index.html",
+    "string": "🔪",
+    "hex": "f09f94aa"
+  },
+  {
+    "file": "index.html",
+    "string": "🫀",
+    "hex": "f09fab80"
+  },
+  {
+    "file": "index.html",
+    "string": "🦷",
+    "hex": "f09fa6b7"
+  },
+  {
+    "file": "index.html",
+    "string": "👁️",
+    "hex": "f09f9181efb88f"
+  },
+  {
+    "file": "index.html",
+    "string": "★★★★★",
+    "hex": "e29885e29885e29885e29885e29885"
+  },
+  {
+    "file": "index.html",
+    "string": "📞",
+    "hex": "f09f939e"
+  },
+  {
+    "file": "services.html",
+    "string": "â�‚¬â€œ",
+    "hex": "c3a2efbfbde2809ac2acc3a2e282acc593"
+  },
+  {
+    "file": "services.html",
+    "string": "—",
+    "hex": "e28094"
+  },
+  {
+    "file": "services.html",
+    "string": "ðŸ¾",
+    "hex": "c3b0c5b8c290c2be"
+  },
+  {
+    "file": "services.html",
+    "string": "â€”",
+    "hex": "c3a2e282ace2809d"
+  },
+  {
+    "file": "services.html",
+    "string": "ðŸ�€œâ€¦",
+    "hex": "c3b0c5b8efbfbde282acc593c3a2e282acc2a6"
+  },
+  {
+    "file": "services.html",
+    "string": "ðŸ�€œÅ¾",
+    "hex": "c3b0c5b8efbfbde282acc593c385c2be"
+  },
+  {
+    "file": "tail.html",
+    "string": "��",
+    "hex": "efbfbdefbfbd"
+  },
+  {
+    "file": "tail.html",
+    "string": "�",
+    "hex": "efbfbd"
+  },
+  {
+    "file": "team.html",
+    "string": "â�‚¬â€œ",
+    "hex": "c3a2efbfbde2809ac2acc3a2e282acc593"
+  },
+  {
+    "file": "team.html",
+    "string": "—",
+    "hex": "e28094"
+  },
+  {
+    "file": "team.html",
+    "string": "ðŸ¾",
+    "hex": "c3b0c5b8c290c2be"
+  },
+  {
+    "file": "team.html",
+    "string": "ðŸ�€˜Â¤",
+    "hex": "c3b0c5b8efbfbde282accb9cc382c2a4"
+  },
+  {
+    "file": "team.html",
+    "string": "ðŸ�€œÅ¾",
+    "hex": "c3b0c5b8efbfbde282acc593c385c2be"
+  },
+  {
+    "file": "team.html",
+    "string": "â�“â€°ï¸",
+    "hex": "c3a2efbfbde2809cc3a2e282acc2b0c3afc2b8c28f"
+  },
+  {
+    "file": "team.html",
+    "string": "ðŸ�€œâ€¦",
+    "hex": "c3b0c5b8efbfbde282acc593c3a2e282acc2a6"
+  },
+  {
+    "file": "team.html",
+    "string": "ðŸ�€œÂ§",
+    "hex": "c3b0c5b8efbfbde282acc593c382c2a7"
+  }
+]

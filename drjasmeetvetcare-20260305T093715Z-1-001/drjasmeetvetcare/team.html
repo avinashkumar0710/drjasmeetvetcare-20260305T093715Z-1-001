@@ -1,0 +1,559 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Team | Dr. Jasmeet VetCare – Expert Veterinary Doctors</title>
+    <meta name="description"
+        content="Meet the expert team of veterinary doctors at Dr. Jasmeet VetCare — Dr. Jasmeet Singh, Dr. Alok, Dr. Priyanka, and Dr. Riddhi serving Chhattisgarh & Odisha." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+    <style>
+        /* ---- Team-specific styles ---- */
+        .team-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45);
+            border-color: rgba(0, 184, 169, 0.5);
+        }
+
+        .team-card-img {
+            position: relative;
+            height: 280px;
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .team-card-img .avatar-icon {
+            font-size: 7rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3));
+            transition: transform var(--transition);
+        }
+
+        .team-card:hover .team-card-photo {
+            transform: scale(1.05);
+        }
+
+        .team-card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 22, 40, 0.75) 0%, transparent 45%);
+            pointer-events: none;
+        }
+
+        .team-card-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card-badge {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: var(--white);
+            font-family: 'Outfit';
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .team-card-body {
+            padding: 1.75rem;
+        }
+
+        .team-card-body h3 {
+            color: var(--white);
+            margin-bottom: 0.2rem;
+            font-size: 1.25rem;
+        }
+
+        .team-card-role {
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-family: 'Outfit';
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .team-card-specialities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .spec-tag {
+            display: inline-block;
+            padding: 0.25rem 0.7rem;
+            border-radius: 50px;
+            background: rgba(0, 184, 169, 0.1);
+            border: 1px solid rgba(0, 184, 169, 0.25);
+            color: var(--teal);
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'Outfit';
+        }
+
+        .team-social {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .team-social-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(15, 32, 64, 0.8);
+            border: 1px solid rgba(0, 184, 169, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .team-social-btn:hover {
+            background: rgba(0, 184, 169, 0.2);
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .team-social-btn svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+        }
+
+        /* Values/culture strip */
+        .culture-card {
+            padding: 2rem 1.75rem;
+            text-align: center;
+        }
+
+        .culture-icon {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            color: var(--teal);
+        }
+
+        .culture-card h4 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .culture-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="nav-brand" href="index.html">
+                <img src="images/logo.png" style="height:48px; width:auto; margin-right: 0.5rem;" class="nav-logo"
+                    alt="Dr. Jasmeet VetCare Logo" />
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">Dr. Jasmeet VetCare</span>
+                    <span class="nav-brand-sub">Chhattisgarh & Odisha</span>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-dropdown">
+                    <a class="nav-link" href="#">About</a>
+                    <div class="nav-dropdown-menu">
+                        <a href="about.html">About</a>
+                        <a href="doctor.html">Dr. Jasmeet Singh</a>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="services.html">Services</a></li>
+                <li><a class="nav-link active" href="team.html">Our Team</a></li>
+                <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li><a class="nav-link" href="contact.html">Contact</a></li>
+                <li><a class="nav-link nav-cta" href="contact.html">Book Appointment</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / <span>Our Team</span></div>
+            <span class="section-label">Meet the Experts</span>
+            <div class="accent-line"></div>
+            <h1>Our Team of Doctors</h1>
+            <p class="section-desc" style="margin-top:1rem;">VetCare is a full-service veterinary facility powered by
+                passionate, highly skilled doctors who devote their careers to the health and happiness of your pets.
+            </p>
+        </div>
+    </section>
+
+    <!-- TEAM INTRO -->
+    <section class="section-pad-sm bg-dark">
+        <div class="container">
+            <div class="grid-4 fade-up">
+
+                <div class="culture-card glass-card">
+                    <div class="culture-icon">
+                        <!-- Graduation cap -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                        </svg>
+                    </div>
+                    <h4>Highly Qualified</h4>
+                    <p>Each member holds advanced veterinary degrees with specializations across surgery, medicine, and
+                        diagnostics.</p>
+                </div>
+
+                <div class="culture-card glass-card">
+                    <div class="culture-icon" style="color:#e05a7a;">
+                        <!-- Heart -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                    </div>
+                    <h4>Pet Lovers</h4>
+                    <p>Our team genuinely loves animals — your pet won't just be treated, they'll be cared for like
+                        family.</p>
+                </div>
+
+                <div class="culture-card glass-card">
+                    <div class="culture-icon" style="color:var(--gold);">
+                        <!-- Trophy -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                            <path d="M4 22h16" />
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+                        </svg>
+                    </div>
+                    <h4>Award Winning</h4>
+                    <p>Led by a Gold Medalist veterinary surgeon with national recognition in research and clinical
+                        excellence.</p>
+                </div>
+
+                <div class="culture-card glass-card">
+                    <div class="culture-icon">
+                        <!-- Globe -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                            <path d="M2 12h20" />
+                        </svg>
+                    </div>
+                    <h4>Multi-Branch Presence</h4>
+                    <p>Our team operates across 3 branches in Chhattisgarh & Odisha, with online consultations
+                        available too.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM CARDS -->
+    <section class="section-pad bg-mid">
+        <div class="container">
+            <div class="text-center fade-up" style="margin-bottom:3.5rem;">
+                <span class="section-label">Team of Doctors</span>
+                <div class="accent-line center"></div>
+                <h2>The People Behind Your Pet's Care</h2>
+                <p class="section-desc">Experienced, compassionate, and dedicated to delivering the highest standard of
+                    veterinary medicine.</p>
+            </div>
+
+            <div class="grid-4">
+
+                <!-- Dr. Jasmeet -->
+                <div class="team-card glass-card fade-up">
+                    <div class="team-card-img">
+                        <img class="team-card-photo" src="drimage/dr-jasmeet-enhanced.png" alt="Dr. Jasmeet Singh" />
+                        <div class="team-card-badge">Director</div>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Dr. Jasmeet Singh</h3>
+                        <div class="team-card-role">Veterinary Surgeon &amp; Director</div>
+                        <p class="team-card-desc">PhD, Gold Medalist (IVRI). 10+ years of expertise in veterinary
+                            surgery, anesthesia, oncology, and wildlife care. Founder of VetCare.</p>
+                        <div class="team-card-specialities">
+                            <span class="spec-tag">Surgery</span>
+                            <span class="spec-tag">Oncology</span>
+                            <span class="spec-tag">Anesthesia</span>
+                            <span class="spec-tag">Wildlife</span>
+                        </div>
+                        <div class="team-social">
+                            <!-- View Profile -->
+                            <a class="team-social-btn" href="doctor.html" title="View Profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M20 21a8 8 0 1 0-16 0" />
+                                </svg>
+                            </a>
+                            <!-- Call -->
+                            <a class="team-social-btn" href="tel:9040046346" title="Call">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </a>
+                            <!-- Email -->
+                            <a class="team-social-btn" href="mailto:info@drjasmeetvetcare.com" title="Email">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Alok -->
+                <div class="team-card glass-card fade-up delay-1">
+                    <div class="team-card-img">
+                        <img class="team-card-photo" src="drimage/dr-alok-enhanced.png" alt="Dr. Alok Kumar Singh" />
+                        <div class="team-card-badge">Veterinarian</div>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Dr. Alok</h3>
+                        <div class="team-card-role">Veterinary Physician</div>
+                        <p class="team-card-desc">An experienced veterinary physician with expertise in small animal
+                            internal medicine, diagnostics, and critical care management.</p>
+                        <div class="team-card-specialities">
+                            <span class="spec-tag">Internal Medicine</span>
+                            <span class="spec-tag">Diagnostics</span>
+                            <span class="spec-tag">ICU</span>
+                        </div>
+                        <div class="team-social">
+                            <!-- Book Appointment -->
+                            <a class="team-social-btn" href="contact.html" title="Book Appointment">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" />
+                                    <path d="M16 2v4M8 2v4M3 10h18" />
+                                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+                                </svg>
+                            </a>
+                            <!-- Call -->
+                            <a class="team-social-btn" href="tel:9040046346" title="Call">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Priyanka -->
+                <div class="team-card glass-card fade-up delay-2">
+                    <div class="team-card-img">
+                        <img class="team-card-photo" src="drimage/dr-priyanka-enhanced.png" alt="Dr. Priyanka" />
+                        <div class="team-card-badge">Veterinarian</div>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Dr. Priyanka</h3>
+                        <div class="team-card-role">Veterinary Gynaecologist</div>
+                        <p class="team-card-desc">Specialist in small animal gynaecology and reproductive health. Expert
+                            in managing infertility, pyometra, hormonal conditions, and breeding consultations.</p>
+                        <div class="team-card-specialities">
+                            <span class="spec-tag">Gynaecology</span>
+                            <span class="spec-tag">Reproduction</span>
+                            <span class="spec-tag">Ultrasonography</span>
+                        </div>
+                        <div class="team-social">
+                            <a class="team-social-btn" href="contact.html" title="Book Appointment">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" />
+                                    <path d="M16 2v4M8 2v4M3 10h18" />
+                                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+                                </svg>
+                            </a>
+                            <a class="team-social-btn" href="tel:9040046346" title="Call">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Riddhi -->
+                <div class="team-card glass-card fade-up delay-3">
+                    <div class="team-card-img">
+                        <img class="team-card-photo" src="drimage/dr-riddhi-enhanced.png" alt="Dr. Riddhi Pandey" />
+                        <div class="team-card-badge">Veterinarian</div>
+                    </div>
+                    <div class="team-card-body">
+                        <h3>Dr. Riddhi</h3>
+                        <div class="team-card-role">Veterinary Dermatologist</div>
+                        <p class="team-card-desc">Specialist in veterinary dermatology, ophthalmology, and dental care.
+                            Focused on skin health, eye conditions, and preventive wellness programs.</p>
+                        <div class="team-card-specialities">
+                            <span class="spec-tag">Dermatology</span>
+                            <span class="spec-tag">Ophthalmology</span>
+                            <span class="spec-tag">Dentistry</span>
+                        </div>
+                        <div class="team-social">
+                            <a class="team-social-btn" href="contact.html" title="Book Appointment">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" />
+                                    <path d="M16 2v4M8 2v4M3 10h18" />
+                                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+                                </svg>
+                            </a>
+                            <a class="team-social-btn" href="tel:9040046346" title="Call">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN OUR TEAM / MISSION -->
+    <section class="section-pad bg-dark">
+        <div class="container grid-2" style="gap:4rem; align-items:center;">
+            <div class="fade-up">
+                <span class="section-label">Our Philosophy</span>
+                <div class="accent-line"></div>
+                <h2>Committed to Excellence, Driven by Compassion</h2>
+                <p style="margin-bottom:1.25rem;">Vetcare is a full-service veterinary facility that accepts all
+                    emergency and regular medical, surgical, and dental cases. Our team has spent years treating serious
+                    illnesses and providing the best wellness treatment for your pets.</p>
+                <p style="margin-bottom:1.75rem;">We make our clinic a friendly place where your pet can relax and enjoy
+                    the company of our dedicated veterinarians — because we believe that a calm pet heals faster.</p>
+                <div class="about-points">
+                    <div class="about-point">Continuous professional education &amp; training</div>
+                    <div class="about-point">Patient-first, compassion-driven approach</div>
+                    <div class="about-point">Transparent communication with pet parents</div>
+                    <div class="about-point">Evidence-based veterinary medicine</div>
+                </div>
+            </div>
+            <div class="fade-up delay-1">
+                <div class="glass-card" style="padding:2.5rem;">
+                    <span class="section-label">Work With Us</span>
+                    <div class="accent-line"></div>
+                    <h3 style="margin-bottom:1rem;">Join Our Veterinary Team</h3>
+                    <p style="margin-bottom:1.5rem; font-size:0.95rem;">We are always looking for passionate
+                        veterinarians and support staff who share our commitment to exceptional animal care.</p>
+                    <ul style="display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.75rem;">
+                        <li class="about-point">Competitive compensation &amp; growth opportunities</li>
+                        <li class="about-point">Modern facility with advanced equipment</li>
+                        <li class="about-point">Collaborative, supportive team culture</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary" style="width:100%; justify-content:center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-right:0.5rem; vertical-align:middle;">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding:80px 0; background:linear-gradient(135deg, var(--teal-dark), var(--teal));">
+        <div class="container text-center fade-up">
+            <h2 style="color:var(--white); margin-bottom:0.75rem;">Book an Appointment with Our Experts</h2>
+            <p style="color:rgba(255,255,255,0.85); margin-bottom:2rem;">Our team is ready to provide the best possible
+                care for your pet.</p>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+                <a href="contact.html" class="btn btn-primary" style="background:var(--navy);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin-right:0.45rem; vertical-align:middle;">
+                        <rect width="18" height="18" x="3" y="4" rx="2" />
+                        <path d="M16 2v4M8 2v4M3 10h18" />
+                        <path d="M8 14h.01M12 14h.01M16 14h.01" />
+                    </svg>
+                    Book Now
+                </a>
+                <a href="tel:9040046346" class="btn btn-outline"
+                    style="border-color:rgba(255,255,255,0.5); color:var(--white);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin-right:0.45rem; vertical-align:middle;">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    +91 90400 46346
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <script src="js/footer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

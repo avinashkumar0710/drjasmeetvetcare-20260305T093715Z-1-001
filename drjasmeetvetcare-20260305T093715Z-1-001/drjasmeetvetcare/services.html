@@ -1,0 +1,720 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | Dr. Jasmeet VetCare &ndash; Multispeciality Veterinary Hospital</title>
+    <meta name="description"
+        content="Explore all veterinary services at Dr. Jasmeet VetCare — surgery, vaccination, ICU, dentistry, dermatology, ophthalmology, oncology, and more in Chhattisgarh & Odisha." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>" />
+    <style>
+        .svc-photo-strip {
+            background: var(--navy-mid);
+            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 40s linear infinite;
+        }
+
+        .marquee-wrapper:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .marquee-img {
+            width: 280px;
+            height: 180px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-right: 3px solid var(--navy);
+            filter: brightness(0.8) saturate(1.1);
+            transition: filter .3s;
+        }
+
+        .marquee-img:hover {
+            filter: brightness(1) saturate(1.2);
+        }
+
+        .svc-stats {
+            display: flex;
+            justify-content: center;
+            background: var(--navy-mid);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .svc-stat {
+            text-align: center;
+            padding: 2rem 3rem;
+            border-right: 1px solid var(--glass-border);
+            flex: 1;
+            max-width: 220px;
+        }
+
+        .svc-stat:last-child {
+            border-right: none;
+        }
+
+        .svc-stat strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: .3rem;
+        }
+
+        .svc-stat span {
+            font-size: .78rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-weight: 600;
+        }
+
+        .services-section {
+            background: var(--navy, #0a1628);
+            padding: 80px 0 60px;
+        }
+
+        .services-heading {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .services-heading h2 {
+            color: var(--white);
+            margin-bottom: .5rem;
+        }
+
+        .services-heading p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .svc-card {
+            display: flex;
+            align-items: stretch;
+            background: var(--glass-bg, rgba(255, 255, 255, .03));
+            border-radius: var(--radius, 12px);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--glass-border);
+            transition: transform .3s, box-shadow .3s, border-color .3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .svc-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity .5s ease, transform .5s ease, box-shadow .3s, border-color .3s;
+        }
+
+        .svc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .5);
+            border-color: rgba(0, 184, 169, .45);
+        }
+
+        .svc-card-img {
+            flex: 0 0 25%;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .svc-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .55s ease;
+            filter: brightness(.85);
+        }
+
+        .svc-card:hover .svc-card-img img {
+            transform: scale(1.07);
+            filter: brightness(1);
+        }
+
+        .svc-num {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark, #00968a));
+            color: var(--white);
+            font-size: .9rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 184, 169, .5);
+            z-index: 1;
+        }
+
+        .svc-card-body {
+            flex: 1;
+            padding: 1.75rem 2.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .svc-card-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: .7rem;
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+        }
+
+        .svc-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: rgba(0, 184, 169, .12);
+            border: 1px solid rgba(0, 184, 169, .2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--teal);
+        }
+
+        .svc-card-body p {
+            font-size: .92rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        @media(max-width:768px) {
+            .svc-card {
+                flex-direction: column
+            }
+
+            .svc-card-img {
+                flex: 0 0 180px;
+                min-height: 180px
+            }
+
+            .svc-card-body {
+                padding: 1.4rem 1.5rem;
+                border-left: none;
+                border-top: 1px solid var(--glass-border)
+            }
+
+            .svc-stats {
+                flex-wrap: wrap
+            }
+
+            .svc-stat {
+                min-width: 120px;
+                padding: 1.5rem
+            }
+
+            .marquee-img {
+                width: 200px;
+                height: 130px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="nav-brand" href="index.html">
+                <img src="images/logo.png" style="height:48px;width:auto;margin-right:.5rem;" class="nav-logo"
+                    alt="Dr. Jasmeet VetCare Logo" />
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">Dr. Jasmeet VetCare</span>
+                    <span class="nav-brand-sub">Chhattisgarh &amp; Odisha</span>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-dropdown">
+                    <a class="nav-link" href="#">About</a>
+                    <div class="nav-dropdown-menu">
+                        <a href="about.html">About</a>
+                        <a href="doctor.html">Dr. Jasmeet Singh</a>
+                    </div>
+                </li>
+                <li><a class="nav-link active" href="services.html">Services</a></li>
+                <li><a class="nav-link" href="team.html">Our Team</a></li>
+                <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li><a class="nav-link" href="contact.html">Contact</a></li>
+                <li><a class="nav-link nav-cta" href="contact.html">Book Appointment</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-breadcrumb"><a href="index.html">Home</a> / <span>Services</span></div>
+            <span class="section-label">What We Offer</span>
+            <div class="accent-line"></div>
+            <h1>Our Veterinary Services</h1>
+            <p class="section-desc" style="margin-top:1rem;">&ldquo;We Love Pets As Much As You Do&rdquo; &mdash; Our
+                professional veterinarians offer a full range of surgical and medical facilities for small animals and
+                more.</p>
+        </div>
+    </section>
+
+    <div class="svc-photo-strip">
+        <div class="marquee-wrapper">
+            <img class="marquee-img" src="services-img/multi-specialty-veterinary-hospital-in-bhilai.webp"
+                alt="Clinic Bhilai" />
+            <img class="marquee-img" src="services-img/veterinary-hospitals-in-odisha.webp" alt="Vet Hospital Odisha" />
+            <img class="marquee-img" src="services-img/animal-clinics-in-odisha.webp" alt="Animal Clinic" />
+            <img class="marquee-img" src="services-img/pet-clinic-in-odisha.webp" alt="Pet Clinic" />
+            <img class="marquee-img" src="services-img/dog-hospital-in-odisha.webp" alt="Dog Care" />
+            <img class="marquee-img" src="services-img/animal-hospitals-in-bhilai.webp" alt="Animal Hospital Bhilai" />
+            <img class="marquee-img" src="services-img/super-speciality-veterinary-hospital-in-odisha.webp"
+                alt="Super Speciality" />
+            <img class="marquee-img" src="services-img/veterinary-doctor-in-odisha.webp" alt="Vet Doctor" />
+            <img class="marquee-img" src="services-img/multi-specialty-veterinary-hospital-in-bhilai.webp"
+                alt="Clinic Bhilai" />
+            <img class="marquee-img" src="services-img/veterinary-hospitals-in-odisha.webp" alt="Vet Hospital Odisha" />
+            <img class="marquee-img" src="services-img/animal-clinics-in-odisha.webp" alt="Animal Clinic" />
+            <img class="marquee-img" src="services-img/pet-clinic-in-odisha.webp" alt="Pet Clinic" />
+            <img class="marquee-img" src="services-img/dog-hospital-in-odisha.webp" alt="Dog Care" />
+            <img class="marquee-img" src="services-img/animal-hospitals-in-bhilai.webp" alt="Animal Hospital Bhilai" />
+            <img class="marquee-img" src="services-img/super-speciality-veterinary-hospital-in-odisha.webp"
+                alt="Super Speciality" />
+            <img class="marquee-img" src="services-img/veterinary-doctor-in-odisha.webp" alt="Vet Doctor" />
+        </div>
+    </div>
+
+    <div class="svc-stats">
+        <div class="svc-stat"><strong>16+</strong><span>Services Offered</span></div>
+        <div class="svc-stat"><strong>10+</strong><span>Years Experience</span></div>
+        <div class="svc-stat"><strong>3</strong><span>Branch Locations</span></div>
+        <div class="svc-stat"><strong>24/7</strong><span>Emergency Care</span></div>
+    </div>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="services-heading fade-up">
+                <span class="section-label">Complete Care</span>
+                <div class="accent-line center"></div>
+                <h2>All Services Under One Roof</h2>
+                <p>From emergency surgery to routine consultations &mdash; every service your pet needs, delivered with
+                    expertise and compassion.</p>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">1</div><img src="services-img/veterinary-doctor-in-odisha.webp" alt="Surgery"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 3H5a2 2 0 0 0-2 2v4" />
+                                <path d="M9 3h6" />
+                                <path d="M15 3h4a2 2 0 0 1 2 2v4" />
+                                <path d="M3 9v6" />
+                                <path d="M21 9v6" />
+                                <path d="M3 15v4a2 2 0 0 0 2 2h4" />
+                                <path d="M15 21h4a2 2 0 0 0 2-2v-4" />
+                                <path d="M9 21h6" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg></span>Ultramodern Surgical Facility</h3>
+                    <p>Our clinic is equipped with a state-of-the-art Ultramodern Surgery Operation Theatre. We have
+                        successfully conducted numerous specialized and complicated surgical procedures across a wide
+                        variety of species. At any point during their life, your pet may need surgery &mdash; our
+                        veterinarians use the most up-to-date anesthesia and surgical equipment available, ensuring the
+                        best possible outcome.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">2</div><img src="services-img/vet-clinic-in-odisha.webp"
+                        alt="Surgical Procedure" loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m12 19 7-7 3 3-7 7-3-3z" />
+                                <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                                <circle cx="11" cy="11" r="2" />
+                            </svg></span>Surgical Procedure</h3>
+                    <p>We provide same-day appointments for major surgeries and up to two-week advance appointments for
+                        routine procedures such as neutering, dental surgery, and other elective procedures. Our highly
+                        trained team ensures safe pre-anesthetic protocols, attentive continuous monitoring before,
+                        during, and after surgical procedures to facilitate a smooth and quick recovery.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">3</div><img
+                        src="services-img/multi-specialty-veterinary-hospital-in-bhilai.webp" alt="Ticks"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg></span>Tick &amp; Fleas Treatment</h3>
+                    <p>Ticks and fleas are common problems in dogs and cats and can transmit dangerous diseases. We
+                        provide professional advice on effective parasitic control tailored to your pet&rsquo;s
+                        environment and health history. We have several options to protect your pets, including topical
+                        applications, oral medications, and special tick baths to keep your companion completely
+                        pest-free and comfortable.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">4</div><img
+                        src="services-img/super-speciality-veterinary-hospital-in-odisha.webp" alt="Critical"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h5v5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z" />
+                            </svg></span>Special Care Under Critical Situation</h3>
+                    <p>In life-threatening emergencies, immediate and specialized attention is available. Our critical
+                        care unit is equipped with continuous monitoring devices and life-support tools. Whether
+                        it&rsquo;s sudden distress, poisoning, trauma, or worsening of chronic ailments, our prompt
+                        triage and highly equipped emergency team step in to stabilize your pets and work towards
+                        resolving the emergency effectively.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">5</div><img src="services-img/veterinary-hospitals-in-bhilai.webp" alt="ICU"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg></span>Intensive Care Unit (ICU)</h3>
+                    <p>Day-care facilities for pets suffering from critical emergencies have been established at our
+                        clinic. We are equipped with thermoregulatory balance, oxygen therapy, respiratory support, and
+                        advanced patient monitors for better management of critical patients. Our doctors keep you
+                        updated daily and provide client education so you always know exactly what&rsquo;s happening.
+                    </p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">6</div><img src="services-img/animal-hospitals-in-odisha.webp" alt="Ultrasound"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="2" />
+                                <path d="M4.93 4.93a10 10 0 0 0 0 14.14" />
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                                <path d="M7.76 7.76a6 6 0 0 0 0 8.49" />
+                                <path d="M16.24 7.76a6 6 0 0 1 0 8.49" />
+                            </svg></span>Ultrasonography</h3>
+                    <p>Our imaging diagnostics setup is an integrated non-invasive modality to help clearly visualize
+                        soft tissues such as the heart, liver, bladder, kidneys, and gastrointestinal tract.
+                        Ultrasonography is completely painless and allows our expert veterinary specialists to assess
+                        the exact health condition, track pregnancy, and locate internal abnormalities without
+                        proceeding to immediate surgical exploration.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">7</div><img src="services-img/veterinary-hospitals-in-odisha.webp"
+                        alt="Routine" loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="4" rx="2" />
+                                <path d="M16 2v4M8 2v4M3 10h18" />
+                                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+                            </svg></span>Routine &amp; Extensive Treatment</h3>
+                    <p>We aim to provide a stress-free environment paired with compassionate routine health checks that
+                        ensure longevity and well-being for your companion animal. From comprehensive medical checkups,
+                        treating mild infectious ailments, wound dressings, and chronic medication management, our
+                        clinical team focuses on building a foundation of great lifelong health across all age phases.
+                    </p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">8</div><img src="services-img/pet-hospitals-in-odisha.webp" alt="Vaccination"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 2 4 4" />
+                                <path d="m17 7 3-3" />
+                                <path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5" />
+                                <path d="m9 11 4 4" />
+                                <path d="m5 19-3 3" />
+                                <path d="m14 4 6 6" />
+                            </svg></span>Preventive Healthcare &amp; Vaccination</h3>
+                    <p>Regular vaccination of your furry babies protects against various infectious diseases. We are
+                        providing complete vaccination facilities for dogs, cats, birds, and other species of domestic
+                        animals. Vaccines help your pet&rsquo;s immune system detect and respond to different infections
+                        before they can cause damage &mdash; vaccinating at the appropriate times is essential.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">9</div><img src="services-img/animal-clinics-in-odisha.webp" alt="Deworming"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 12h8" />
+                                <path d="M12 8v8" />
+                            </svg></span>Deworming</h3>
+                    <p>Routine deworming of pups followed by the standard protocol for different age groups is advised
+                        for companion animals. Puppies should be dewormed every two weeks before they reach twelve weeks
+                        of age, then once a month until six months old. For effective protection, all dogs should be
+                        wormed every three months &mdash; common worms can be easily controlled with this regular
+                        schedule.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">10</div><img src="services-img/vet-clinic-in-bhilai.webp" alt="Diagnostics"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0 0-14h-1" />
+                                <path d="M9 14H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h5.5" />
+                            </svg></span>Diagnostic Services</h3>
+                    <p>Immediate reliable results are essential during complex medical diagnostics. The advanced
+                        in-house veterinary laboratory guarantees our clinicians rapid results covering complete blood
+                        counts (CBC), comprehensive chemistry profiles, cytology, and urine tests. Our imaging
+                        diagnostics seamlessly supplement bloodwork to accurately trace specific conditions.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">11</div><img src="services-img/dog-hospital-in-odisha.webp" alt="Critical"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg></span>Animal Care In Critical Condition</h3>
+                    <p>Compassionate close-monitoring and therapeutic fluid systems guarantee critical patients obtain
+                        specific treatment and stabilization. A multi-layered safety check helps properly maintain
+                        patient comfort while providing emergency pain relief management, round-the-clock physical
+                        evaluations, and immediate pharmaceutical intervention based on shifting vital parameters.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">12</div><img src="services-img/pet-clinic-in-odisha.webp" alt="Consultation"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg></span>Routine Consultation</h3>
+                    <p>Through routine pet lifestyle discussions, doctors identify previously unnoticed micro-symptoms
+                        before illnesses progress. Comprehensive physical examinations during all routine visitations
+                        support effective holistic assessments determining weight metrics, body temperature conditions,
+                        joint mobility functionality, and overall health to craft an impeccable treatment plan.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">13</div><img
+                        src="services-img/multi-specialty-veterinary-hospital-in-odisha.webp" alt="Medicine"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1" />
+                                <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
+                                <circle cx="20" cy="10" r="2" />
+                            </svg></span>Small Animal Internal Medicine</h3>
+                    <p>We aim to provide thorough clinical investigation and diagnosis for all types of medical
+                        ailments, ensuring accurate diagnosis and early recovery. Our team at VetCare is well-trained in
+                        different medical therapies to manage the healthcare needs of your pet across organ systems. We
+                        are also initiating blood collection and transfusion services for small animals.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">14</div><img src="services-img/animal-hospitals-in-bhilai.webp"
+                        alt="Gynaecology" loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="6" />
+                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                            </svg></span>Small Animal Gynaecology</h3>
+                    <p>We have a team of expert veterinary gynecologists to deal with a variety of small animal
+                        gynecological issues such as infertility, mismating, pseudopregnancy, pyometra, and various
+                        hormonal disorders. Providing treatment and advice to owners for successful breeding has always
+                        been our area of interest, supporting both clinical diagnosis and postgraduate research.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">15</div><img src="services-img/pet-clinic-in-odisha.webp" alt="Dentistry"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 5.5c1-1.5 2.5-2 4-2 2.5 0 4 2 4 4 0 3-1 5-2 6.5S15 17 12 22c-3-5-4-7-6-8.5S4 10 4 7c0-2 1.5-4 4-4 1.5 0 3 .5 4 2z" />
+                            </svg></span>Dentistry Unit</h3>
+                    <p>Our clinic is well-equipped with ultramodern dentistry equipment and facilities to serve the
+                        dental needs of pet patients &mdash; including teeth extraction, scaling, polishing, and other
+                        cosmetic dental procedures. You can safely assume they will be treated with the utmost care by a
+                        team of veterinarians and dental technicians versed in both dental health and general
+                        anesthesia.</p>
+                </div>
+            </div>
+
+            <div class="svc-card">
+                <div class="svc-card-img">
+                    <div class="svc-num">16</div><img
+                        src="services-img/multi-specialty-veterinary-hospital-in-bhilai.webp" alt="Pet Shop"
+                        loading="lazy" />
+                </div>
+                <div class="svc-card-body">
+                    <h3><span class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                                <line x1="3" y1="6" x2="21" y2="6" />
+                                <path d="M16 10a4 4 0 0 1-8 0" />
+                            </svg></span>Pet Shop</h3>
+                    <p>Our dedicated internal Pet Shop offers a premium section of pet accessories, leashes, custom
+                        grooming kits, and specially formulated high-nutrition prescription diet packets perfectly
+                        matching our clinical recommendations. We maintain an impressive inventory covering highly
+                        effective pharmaceutical stock, making it tremendously simple for caring pet parents to retrieve
+                        prescribed medications promptly.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section style="padding:80px 0;background:linear-gradient(135deg,var(--teal-dark),var(--teal));">
+        <div class="container text-center fade-up">
+            <h2 style="color:var(--white);margin-bottom:.75rem;">Need Expert Veterinary Care?</h2>
+            <p style="color:rgba(255,255,255,.85);margin-bottom:2rem;">Book an appointment today and bring your pet to
+                the experts.</p>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+                <a href="contact.html" class="btn btn-primary" style="background:var(--navy);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin-right:.4rem;vertical-align:middle;">
+                        <rect width="18" height="18" x="3" y="4" rx="2" />
+                        <path d="M16 2v4M8 2v4M3 10h18" />
+                        <path d="M8 14h.01M12 14h.01M16 14h.01" />
+                    </svg>
+                    Book Now
+                </a>
+                <a href="tel:9040046346" class="btn btn-outline"
+                    style="border-color:rgba(255,255,255,.5);color:var(--white);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin-right:.4rem;vertical-align:middle;">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    +91 90400 46346
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/footer.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.svc-card');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        cards.forEach(c => io.observe(c));
+    </script>
+</body>
+
+</html>
